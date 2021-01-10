@@ -15,17 +15,26 @@ const confirmAddMovieButton = cancelAddMovieButton.nextElementSibling;
 const userInputs = addMovieModal.querySelectorAll('input');
 //const userInputs = addMovieModal.getElementsByTagName('input');
 
+const movies = [];
+
+const clearMovieInput = () => {
+	for (const usrInput of userInputs){
+		usrInput.value = '';
+	}
+};
+
 const toggleBackdrop = () => {
     backdrop.classList.toggle('visible');
 };
 
 const toggleMovieModal = () => {//function model(){}
-    addMovieModal.classList.toggle('visible'); //this method classList.toggle avoid error when it´s visible
+    addMovieModal.classList.toggle('visible'); //this method classList.toggle avoid error when itï¿½s visible
     toggleBackdrop();
 }; 
 
 const cancelAddMovieHandler = () => {
     toggleMovieModal();
+    clearMovieInput();
 };
 
 const addMovieHandler = () => {
@@ -39,6 +48,17 @@ const addMovieHandler = () => {
         return;
     }
 
+    const newMovies = {
+    		title : titleValue,
+    		image : imageUrlValue,
+    		rating : ratingValue
+
+    };
+    
+    movies.push(newMovies);
+    console.log(movies);
+    toggleMovieModal();
+    clearMovieInput();
 };
 
 const backdropClickHandler = () => {
